@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content #content padding>
   <div id="chatMessages">
     <div class="message" *ngFor="let message of messages" >
       <div  [class]="message.username ==username ? 'innerMessage messageRight ' : 'innerMessage messageLeft'">
@@ -26,10 +26,10 @@
 
 
 <ion-footer>
-  <ion-toolbar>
+
     <div id="footer">
       <div class="elem">
-        <ion-input type="text" value="" [(ngModel)]="message" placeholder="Enter you message"></ion-input>
+        <ion-input type="text" value="" [(ngModel)]="message" placeholder="Type something to send.."></ion-input>
       </div>
       <div class="elem">
         <button ion-button icon-only (click)="sendMessage()">
@@ -37,5 +37,5 @@
         </button>
       </div>
     </div>
-  </ion-toolbar>
+  
 </ion-footer>

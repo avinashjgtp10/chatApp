@@ -41,28 +41,35 @@ var ChatPage = /** @class */ (function () {
             console.log(data);
             _this.messages = data;
         });
-        this.message = "";
+        console.log("Message:" + this.message);
     }
     ChatPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ChatPage');
+        this.content.scrollToBottom(300);
     };
     ChatPage.prototype.sendMessage = function () {
+        var _this = this;
         this.db.list('/chat').push({
             username: this.username,
             message: this.message
         }).then(function () {
+            _this.message = "";
+            _this.content.scrollToBottom(300);
         }).catch(function () {
         });
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('content'),
+        __metadata("design:type", Object)
+    ], ChatPage.prototype, "content", void 0);
     ChatPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-chat',template:/*ion-inline-start:"/Users/Avinash/Firebase/chatApp/src/pages/chat/chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>chat</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <div id="chatMessages">\n    <div class="message" *ngFor="let message of messages" >\n      <div  [class]="message.username ==username ? \'innerMessage messageRight \' : \'innerMessage messageLeft\'">\n        <div class="username">{{message.username}}</div>\n        <div class="message">{{message.message}}</div>\n      </div>\n    </div>\n  </div>\n</ion-content>\n\n\n<ion-footer>\n  <ion-toolbar>\n    <div id="footer">\n      <div class="elem">\n        <ion-input type="text" value="" [(ngModel)]="message" placeholder="Enter you message"></ion-input>\n      </div>\n      <div class="elem">\n        <button ion-button icon-only (click)="sendMessage()">\n          <ion-icon ios="ios-send" md="md-send"></ion-icon>\n        </button>\n      </div>\n    </div>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"/Users/Avinash/Firebase/chatApp/src/pages/chat/chat.html"*/,
+            selector: 'page-chat',template:/*ion-inline-start:"/Users/Avinash/Firebase/chatApp/src/pages/chat/chat.html"*/'<!--\n  Generated template for the ChatPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>chat</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content #content padding>\n  <div id="chatMessages">\n    <div class="message" *ngFor="let message of messages" >\n      <div  [class]="message.username ==username ? \'innerMessage messageRight \' : \'innerMessage messageLeft\'">\n        <div class="username">{{message.username}}</div>\n        <div class="message">{{message.message}}</div>\n      </div>\n    </div>\n  </div>\n</ion-content>\n\n\n<ion-footer>\n\n    <div id="footer">\n      <div class="elem">\n        <ion-input type="text" value="" [(ngModel)]="message" placeholder="Type something to send.."></ion-input>\n      </div>\n      <div class="elem">\n        <button ion-button icon-only (click)="sendMessage()">\n          <ion-icon ios="ios-send" md="md-send"></ion-icon>\n        </button>\n      </div>\n    </div>\n  \n</ion-footer>'/*ion-inline-end:"/Users/Avinash/Firebase/chatApp/src/pages/chat/chat.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_angularfire2_database__["a" /* AngularFireDatabase */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _c || Object])
     ], ChatPage);
     return ChatPage;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=chat.js.map

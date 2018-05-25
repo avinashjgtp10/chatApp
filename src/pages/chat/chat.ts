@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams,Content } from 'ionic-angular';
 import { AngularFireDatabase } from "angularfire2/database";
 
 /**
@@ -15,6 +15,7 @@ import { AngularFireDatabase } from "angularfire2/database";
   templateUrl: 'chat.html',
 })
 export class ChatPage {
+  @ViewChild('content') content:any;
 
   username: string = "";
   message: string = "";
@@ -31,20 +32,22 @@ export class ChatPage {
       console.log(data);
       this.messages=data;
     })
-    this.message="";
+   
+    console.log("Message:"+this.message);
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChatPage');
-
+    this.content.scrollToBottom(300);
   }
   sendMessage() {
     this.db.list('/chat').push({
       username: this.username,
       message: this.message
     }).then(() => {
-
+      this.message="";
+      this.content.scrollToBottom(300);
     }).catch(() => {
 
     });
